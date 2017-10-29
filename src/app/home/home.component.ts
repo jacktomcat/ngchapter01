@@ -19,4 +19,9 @@ import { Component, Input } from '@angular/core';
 export class HomeComponent{
     @Input("too")
     text = "please input message"
+    /**事件绑定**/
+    clear(val){
+        val.value="";
+        console.log("清空了内容");
+    }
 }
