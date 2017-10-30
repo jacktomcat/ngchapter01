@@ -5,11 +5,12 @@ import { Component } from '@angular/core';
     //templateUrl: './app.component.html',
     template:`<h1>{{title}}</h1>
             <app-home too="aaa"></app-home>
+            <app-result></app-result>
             `,
     styleUrls: ['./app.component.css']
 })
 
 
 export class AppComponent {
-    title = 'app works,hello!';
+    title = 'app works!';
 }
