@@ -29,12 +29,16 @@ const HEROES: Hero[] = [
 export class ResultComponent{
     title = "titles";
     heroes = HEROES;
-    hero: Hero = {
+    /*selectedHero: Hero = {
         id: 1,
         name: 'Windstorm'
-    };
+    };*/
 
-    selectVal(){
-        console.log("select");
+    selectedHero : Hero;
+
+
+
+    selectVal(sel:Hero):void{
+        this.selectedHero = sel;
     }
 }
