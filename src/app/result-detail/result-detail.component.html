@@ -1,0 +1,8 @@
+<!-- *ngIf 判断 selectedHero 是不是为空-->
+<div *ngIf="hero">
+  <label>name: </label>
+  <!--[(ngModel)]是一个Angular语法，用与把hero.name绑定到输入框中。 它的数据流是双向的：从属性到输入框，并且从输入框回到属性。-->
+  <input [ngModel]="hero.name" placeholder="请输入名称">
+
+  <h3>result works,title从变量中获取:{{title}},名称从实体对象中获取:{{hero.name}}!</h3>
+</div>

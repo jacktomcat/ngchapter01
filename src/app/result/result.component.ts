@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-
-
-//仅次于 import 语句。
-export class Hero {
-    id: number;
-    name: string;
-}
+import {Hero} from '../common/Hero';
 
 const HEROES: Hero[] = [
     { id: 11, name: 'Mr. Nice' },
@@ -35,8 +29,6 @@ export class ResultComponent{
     };*/
 
     selectedHero : Hero;
-
-
 
     selectVal(sel:Hero):void{
         this.selectedHero = sel;
