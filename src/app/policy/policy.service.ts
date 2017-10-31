@@ -22,7 +22,7 @@ const POLICYS: Policy[] = [
 @Injectable()
 export class PolicyService {
 
-  private heroesUrl = 'http://localhost:9090/report-alarm-api/policy/list';  // URL to web api
+  private heroesUrl = 'http://localhost:3000/data';  // URL to web api
 
   constructor(private http:Http) { }
 
@@ -43,10 +43,14 @@ export class PolicyService {
           headers: headers
       });
 
-      return this.http.get(this.heroesUrl,options)
+      const promise: Promise<Policy[]> = this.http.get(this.heroesUrl,options)
           .toPromise()
-          .then(response => response.json().data as Policy[])
+          .then(response => response.json() as Policy[])
           .catch(this.handleError);
+
+      promise.then(policys=>console.log(policys.length))
+
+      return promise;
   }
 
 
@@ -62,7 +66,7 @@ export class PolicyService {
         const url = `${this.heroesUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Policy)
+            .then(response => response.json() as Policy)
             .catch(this.handleError);
     }
 

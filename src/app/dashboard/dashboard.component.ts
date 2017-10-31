@@ -13,10 +13,11 @@ import {PolicyService} from "../policy/policy.service";
 export class DashboardComponent implements OnInit {
 
   policys:Policy[];
+
   constructor(private policyService:PolicyService) { }
 
   ngOnInit() {
-      this.policyService.getPolicys().then(policys=>this.policys=policys.slice(1,5))
+      this.policyService.getPolicys().then(policys=>this.policys=policys)
   }
 
 }
