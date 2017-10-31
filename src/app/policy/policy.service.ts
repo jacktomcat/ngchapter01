@@ -21,9 +21,9 @@ export class PolicyService {
 
   constructor() { }
 
-  /*getHeros():Hero[]{
-      return HEROES;
-  }*/
+  getPolicysList():Policy[]{
+      return POLICYS;
+  }
 
   //异步方式进行调用
   getPolicys(): Promise<Policy[]> {
@@ -37,5 +37,13 @@ export class PolicyService {
           setTimeout(() => resolve(this.getPolicys()), 2000);
       });
   }
+
+    /*getPolicy(id: number): Policy {
+      return this.getPolicysList().find(policy => policy.id===id)
+    }*/
+
+    getPolicy(id: number): Promise<Policy> {
+        return this.getPolicys().then(policy=>policy.find(policy=>policy.id==id));
+    }
 
 }

@@ -1,8 +1,8 @@
 <h3>Top Heroes</h3>
 <div class="grid grid-pad">
-  <div *ngFor="let policy of policys" class="col-1-4">
+  <a *ngFor="let policy of policys" [routerLink]="['/detail', policy.id]" class="col-1-4">
     <div class="module hero">
       <h4>{{policy.name}}</h4>
     </div>
-  </div>
+  </a>
 </div>
