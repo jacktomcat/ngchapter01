@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http,RequestOptions } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
 import {Policy} from "./Policy";
 
 
@@ -19,7 +22,9 @@ const POLICYS: Policy[] = [
 @Injectable()
 export class PolicyService {
 
-  constructor() { }
+  private heroesUrl = 'http://localhost:9090/report-alarm-api/policy/list';  // URL to web api
+
+  constructor(private http:Http) { }
 
   getPolicysList():Policy[]{
       return POLICYS;
@@ -27,7 +32,21 @@ export class PolicyService {
 
   //异步方式进行调用
   getPolicys(): Promise<Policy[]> {
-      return Promise.resolve(POLICYS);
+      //return Promise.resolve(POLICYS);
+
+      const headers: Headers = new Headers();
+      headers.append('Accept', 'application/json');
+      headers.append('Content-Type', 'application/json');
+      headers.append('Access-Control-Allow-Origin', '*');
+
+      const options = new RequestOptions({
+          headers: headers
+      });
+
+      return this.http.get(this.heroesUrl,options)
+          .toPromise()
+          .then(response => response.json().data as Policy[])
+          .catch(this.handleError);
   }
 
 
@@ -38,12 +57,18 @@ export class PolicyService {
       });
   }
 
-    /*getPolicy(id: number): Policy {
-      return this.getPolicysList().find(policy => policy.id===id)
-    }*/
-
     getPolicy(id: number): Promise<Policy> {
-        return this.getPolicys().then(policy=>policy.find(policy=>policy.id==id));
+        //return this.getPolicys().then(policy=>policy.find(policy=>policy.id==id));
+        const url = `${this.heroesUrl}/${id}`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json().data as Policy)
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 
 }

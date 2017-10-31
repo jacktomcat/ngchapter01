@@ -9,6 +9,7 @@ import { PolicyListComponent } from './policy/policy-list.component';
 import { PolicyViewComponent } from './policy/policy-view.component';
 import {PolicyService} from "./policy/policy.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AppRouting} from "./app-routing";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
+    AppRouting
+    /*RouterModule.forRoot([
         {
           path:'policyList',
           component:PolicyListComponent
@@ -40,7 +42,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
             path: 'detail/:id',
             component: PolicyViewComponent
         },
-    ])
+    ])*/
   ],
   providers:[PolicyService],
   bootstrap: [AppComponent]

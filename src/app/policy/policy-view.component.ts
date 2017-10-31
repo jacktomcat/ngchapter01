@@ -36,4 +36,5 @@ export class PolicyViewComponent implements OnInit{
     goBack():void{
         this.location.back();
     }
+
 }

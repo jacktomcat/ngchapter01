@@ -1,4 +1,5 @@
 import { Component,OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {PolicyService} from "./policy.service";
 import {Policy} from "./policy";
 
@@ -14,7 +15,7 @@ export class PolicyListComponent implements OnInit{
   policys:Policy[];
   selectedPolicy:Policy;
 
-constructor(private policyService:PolicyService) { }
+constructor(private router: Router,private policyService:PolicyService) { }
 
   getPolicys():void{
       this.policyService.getPolicys().then(policys=>this.policys=policys);
@@ -29,4 +30,7 @@ constructor(private policyService:PolicyService) { }
       this.selectedPolicy=select;
   }
 
+  gotoDetail(): void {
+      this.router.navigate(['/detail', this.selectedPolicy.id]);
+  }
 }
