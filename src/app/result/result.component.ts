@@ -1,34 +1,40 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import {Hero} from '../common/Hero';
+import {HeroService} from "../service/hero.service";
 
-const HEROES: Hero[] = [
-    { id: 11, name: 'Mr. Nice' },
-    { id: 12, name: 'Narco' },
-    { id: 13, name: 'Bombasto' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magneta' },
-    { id: 16, name: 'RubberMan' },
-    { id: 17, name: 'Dynama' },
-    { id: 18, name: 'Dr IQ' },
-    { id: 19, name: 'Magma' },
-    { id: 20, name: 'Tornado' }
-];
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.css']
+  styleUrls: ['./result.component.css'],
+  providers: [HeroService]
 })
 
-export class ResultComponent{
+
+
+export class ResultComponent implements OnInit{
+
     title = "titles";
-    heroes = HEROES;
+    heroes: Hero[];
+    selectedHero : Hero;
+
+    constructor(private heroService: HeroService){
+        //同步调用结果
+        //this.heroes = heroService.getHeros()
+    }
+
     /*selectedHero: Hero = {
         id: 1,
         name: 'Windstorm'
     };*/
 
-    selectedHero : Hero;
+    getHeroes():void{
+        this.heroService.getHeroesSlowly().then(heros=>this.heroes=heros);
+    }
+    //异步调用结果
+    ngOnInit(): void {
+        this.getHeroes();
+    }
 
     selectVal(sel:Hero):void{
         this.selectedHero = sel;
