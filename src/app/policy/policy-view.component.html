@@ -1,0 +1,11 @@
+
+
+<div *ngIf="policy">
+  <h2>{{policy.name}} details!</h2>
+  <div><label>id: </label>{{policy.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="policy.name" placeholder="name" #keyWords/>
+    <button (click)="clear(keyWords)">清空</button>
+  </div>
+</div>

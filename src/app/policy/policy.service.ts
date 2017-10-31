@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Hero} from "../common/Hero";
+import {Policy} from "./Policy";
 
 
-const HEROES: Hero[] = [
+const POLICYS: Policy[] = [
     { id: 11, name: 'Mr. Nice' },
     { id: 12, name: 'Narco' },
     { id: 13, name: 'Bombasto' },
@@ -17,7 +17,7 @@ const HEROES: Hero[] = [
 
 //注意，我们导入了 Angular 的Injectable函数，并作为@Injectable()装饰器使用这个函数
 @Injectable()
-export class HeroService {
+export class PolicyService {
 
   constructor() { }
 
@@ -26,15 +26,15 @@ export class HeroService {
   }*/
 
   //异步方式进行调用
-  getHeroes(): Promise<Hero[]> {
-      return Promise.resolve(HEROES);
+  getPolicys(): Promise<Policy[]> {
+      return Promise.resolve(POLICYS);
   }
 
 
-  getHeroesSlowly(): Promise<Hero[]> {
+  getPolicysSlowly(): Promise<Policy[]> {
       return new Promise(resolve => {
           // Simulate server latency with 2 second delay
-          setTimeout(() => resolve(this.getHeroes()), 2000);
+          setTimeout(() => resolve(this.getPolicys()), 2000);
       });
   }
 

@@ -1,0 +1,13 @@
+
+
+<ul class="heroes">
+  <li *ngFor="let policy of policys"
+      [class.selected]="policy === selectedPolicy"
+      (click)="onSelect(policy)">
+    <span class="badge">{{policy.id}}</span> {{policy.name}}
+  </li>
+</ul>
+
+
+<div>策略详情</div>
+<policy-view [policy]="selectedPolicy"></policy-view>
